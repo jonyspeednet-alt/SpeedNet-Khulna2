@@ -1,8 +1,5 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 
-// Safely access API key to prevent "process is not defined" errors in browser
-const API_KEY = (typeof process !== 'undefined' && process.env && process.env.API_KEY) ? process.env.API_KEY : '';
-
 // System instruction to guide the AI's behavior as an ISP support agent in Bengali
 const SYSTEM_INSTRUCTION = `
 আপনি 'অ্যাস্ট্রা' (Astra), স্পিডনেট খুলনার এআই সাপোর্ট স্পেশালিস্ট। স্পিডনেট খুলনা বাংলাদেশের খুলনার একটি হাই-স্পিড ইন্টারনেট সার্ভিস প্রোভাইডার।
@@ -25,12 +22,12 @@ const SYSTEM_INSTRUCTION = `
 `;
 
 export const sendMessageToGemini = async (history: {role: string, parts: {text: string}[]}[], message: string): Promise<string> => {
-  if (!API_KEY) {
+  if (!process.env.API_KEY) {
     return "দুঃখিত, আমি এই মুহূর্তে সার্ভারের সাথে সংযোগ করতে পারছি না। (API Key মিসিং)";
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey: API_KEY });
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const chat = ai.chats.create({
       model: 'gemini-2.5-flash',
