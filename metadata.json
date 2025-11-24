@@ -1,0 +1,7 @@
+{
+  "name": "Copy of SpeedNet Khulna",
+  "description": "SpeedNet Khulna - The fastest internet service provider in Khulna. High-speed broadband, buffer-free streaming, and reliable support.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
