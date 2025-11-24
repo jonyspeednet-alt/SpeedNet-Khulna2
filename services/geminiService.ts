@@ -1,7 +1,7 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 
-// Safely access process.env to prevent ReferenceError in browser environments where process is not defined
-const API_KEY = (typeof process !== 'undefined' && process.env && process.env.API_KEY) || '';
+// Safely access API key to prevent "process is not defined" errors in browser
+const API_KEY = (typeof process !== 'undefined' && process.env && process.env.API_KEY) ? process.env.API_KEY : '';
 
 // System instruction to guide the AI's behavior as an ISP support agent in Bengali
 const SYSTEM_INSTRUCTION = `
